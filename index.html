@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta charset="format-detection" content="telephone=no">
+         
+    </head>
+    <body>
+        <div>
+            <button id="btn">click</button>
+        </div>
+
+        <script>
+            // let obj = {};
+            // Object.defineProperty(obj, "school", {
+            //     configurable: false, //是否可删除
+            //     // writable: false, //是否可更改
+            //     enumerable: false, //是否可遍历
+            //     // value:'sdd',
+            //     get() {
+            //         // 获取属性的值时，调用getter
+            //         return "aaa"
+            //     },
+            //     set(value) {
+            //         // 设置属性时 调用setter
+            //     }
+            // })
+            // delete obj.school;
+            // console.l
+            // const a = [];
+            // a.push('hello');
+            // function add(a,b) {
+            //     return a+b;
+            // }
+            // console.log(add(...[1,2]))
+            // const arr = [...(1>0?[12]:[11]), 22]
+            
+            // 数组的克隆
+            // a1 = [1,2,3];
+            // es5
+            // a2 = a1.concat();
+            // es6
+            // a2 = [...a1]
+            // 或者
+            // [...a2] = a1
+            // 将字符串转换为真正的数组
+            // var str = [...'hello'] 
+            // Array.from将类似数组的和可遍历的对象转换为真这个的数组Set\Map\nodelist\arguments\string...
+            // let sets = new Set([1,2,3,4]);
+            // let arr = Array.from(sets);
+            // Array.of 将一组值，转化为数组
+            // let arr = Array.of(1,2,3,4,5)
+            //Array.fill() Array.find() Array.findIndex
+            // 不会对NaN误判 indexOf使用 === 来进行判断，会误判
+            // let result = [1,2,3].includes(5); 
+
+            // 数组的成员有时还是数组，Array.prototype.flat()用于将嵌套的数组“拉平”，变成一维的数组。该方法返回一个新数组，对原数据没有影响。
+            // let newArr =  [1, 2, [3, 4]].flat();
+            // 如果多层嵌套，需要写出层数
+            // let newArr = [1,[2,[3,[4]]]].flat(2);
+            
+            // let [a,b,c] = [1,2];
+            // let [a, [b], c] = [1, [3], 5]
+            // let [a, b,c ] = [1, , 2];
+            // foo是匹配模式， a才是变量
+            // let {foo:a, bar:b} = {foo:'sddd', bar:'fldsngd'};
+            // let {foo, y} = {foo:'123', y:234}
+            // let {foo = 1, y='dsffdg'} = {foo:'wrrwwr'};
+            // 函数用解构返回多个值
+            // function func() {
+            //     return [1,2,3,4];
+            // }
+            // let [a,b,c,d] = func();
+            
+            // // 解构来进行变量交换
+            // let x = 1;
+            // let y = 2;
+            //  [x, y] = [y, x];
+
+            // padStart 头部补全字符串长度  padEnd 尾部补齐字符串长度
+        //    var name =  (parseInt(Math.random()* 1000) + '').padStart(4, '0');
+
+        //trimStart, trimEnd, trim 消除字符串头部\尾部\全部的空格
+        // let str = '    aaa    ';
+        // str = str.trimEnd()
+
+        // // repeat 返回将原来字符串重复N次的新字符串
+        // str = 'bac'.repeat(3);
+
+        //includes(), startsWith(), endsWith()字符串匹配
+        //  console.log('aabbcc'.startsWith('aa'));
+        
+        // Math.trunc去除number的小数部分,并且会将非数值型转换之后再做小数去除
+        // let a = Math.trunc('123.4');
+
+        // Math.sign() Math.sign方法用来判断一个数到底是正数、负数、还是零。对于非数值，会先将其转换为数值。
+        
+        // {x, y = 5}使用的是解构 {}使用的是函数默认值
+
+        // function func({x, y = 3} = {}) {
+        //     console.log(x, y);
+        // }
+        // func();
+        // 箭头函数是再foo函数里面生效的,所以this指向foo所在的环境.call定义了foo环境的变量
+        // let a = 1;
+        // function foo() {
+        //     setTimeout(() =>{
+        //         console.log(this.a);
+        //     }, 0)
+        // }
+        // foo.call({a:2});
+        
+        //function.toString()在es2019中的返回数据包括代码注释和空格
+        // function func(a, b) {
+        //     //test
+        //     return a+b;
+        // }
+        
+        // let a = 'sfff';
+        // let b = {a};
+
+        // let a = {
+        //     ok(){
+        //         console.log('aja')
+        //     }
+        // }
+        // console.log(a.ok.name)
+        // 如果有get 和 set 则name属性不在方法上面，方法的属性描述在get和set上面
+        // let a = {
+        //     get name(){
+        //         console.log('aja');
+        //     },
+        //     set name(value) {
+        //         console.log('sdd');
+        //     }
+        // }
+        // let desc = Object.getOwnPropertyDescriptor(a, 'name')
+
+        // super指定当前对象的原型对象s uper关键字表示原型对象时，只能用在对象的方法之中，用在其他地方都会报错
+        // let foo = {
+        //     a: 'aaa'
+        // }
+        // let b = {
+        //     a:'bbb',
+        //     h() {
+        //         return super.a;
+        //     }
+        // }
+        // Object.setPrototypeOf(b, foo);
+        // b.h();
+        // let a = {a:1,b:2};
+        // let z = {...a}
+        
+        // let a = Symbol('a');
+        // let b = Symbol('b');
+        // let obj = {c: 1};
+        // obj[a] = "aaaaa";
+        // obj[b] = "bbbb";
+        // Object.getOwnPropertySymbols(obj);
+        // 返回所有的key值 包括Symbol类型的
+        // Reflect.ownKeys(obj);
+        // Symbol.for()会将变量个登记在全局环境中供搜索，Symbol不会
+
+        // let a = Symbol.for('a');
+        // let b = Symbol.for('a');
+        // console.log( a === b)
+        // keyFor()返回已登记的Symbol值的key
+        // let a = Symbol.for('haha');
+        // console.log(Symbol.keyFor(a));
+
+        //set 类似数组 但是成员都是唯一的
+        // let set = new Set([1,2,2,3,3,4,5,5]);
+        // set给数组去重
+        // let arr = [1,2,2,3,4,5,5,6];
+        // arr = [...new Set(arr)];
+        
+        // 方法二
+        // let arr = [1,2,2,2,3,3,4];
+        // arr = Array.from(new Set(arr))
+        
+        // set 遍历的顺序就是插入的顺序
+        // let set = new Set([2,34,4]);
+        // set.add(100);
+        // set.add(1);
+        // set.forEach(item => {
+        //     console.log(item)
+        // })
+        // for (let item of set.entries()) {
+        //     // console.log(item)
+        // }
+
+        // map和object的区别在于map的key可以是任意类型，但是object的key只能是字符串
+        // let obj = {a: 1};
+        // let mp = new Map();
+        // mp.set(obj, 'haha');
+        // 数组转map
+        // let map = new Map([['a', 1], ['b', 2]]);
+        // map 转数组
+        // let arr = [...map]
+        
+        // map转对象
+        // function mapToObj(map) {
+        //     obj = {};
+        //     for(let [k, v] of map) {
+        //         obj[k] = v;
+        //     }
+        //     return obj;
+        // }
+        // let map = new Map();
+        // map.set('aa',1).set('bb', 2);
+        // let result = mapToObj(map);
+        
+        // 对象转map
+        // let obj = {a:1, b:2};
+        // function objToMap() {
+        //     let map = new Map();
+        //     for(let k of Object.keys(obj)) {
+        //         map.set(k, obj[k]);
+        //     }
+        //     return map;
+        // }
+        // let map = objToMap(obj);
+        
+        //proxy
+        // let obj = new Proxy({}, {
+        //     get(target, key, receiver) {
+        //         // debugger
+        //         console.log(`get ${key}`);
+        //         return Reflect.get(target, key, receiver)
+        //     },
+        //     set(target, key, value, receiver) {
+        //         console.log(`set ${value}`);
+        //         return Reflect.set(target, key, value, receiver);
+        //     }
+        // })
+
+        
+        </script>
+        <script>
+            // var worker = new Worker('./work.js');
+            // worker.postMessage('hellow ');
+            // worker.postMessage({name:'sdd', args:['worker']});
+
+            // worker.onmessage = function(event) {
+            //     alert(event.data);
+            // }
+            // setTimeout(function(param){
+            //     alert(param);
+            // }, 1000)
+            // 使用闭包向setTimeout()传参
+            // function func (param) {
+            //    return function() {
+            //        alert(param)
+            //    }
+            // }
+            // var f = func(1)
+            // setTimeout(f, 1000);
+
+            // 返回闭包时牢记的一点就是：返回函数不要引用任何循环变量，或者后续会发生变化的变量。
+
+            // // 防抖函数,如果在一段时间内持续触发函数，则会在一段时间内没有再触发，才执行一次处理函数。如果又触发，则重新计算延时
+            // var btn = document.getElementById('btn');
+            // var submit = function(value) {
+                
+            //     console.log(arguments[0]);
+            // }
+            // btn.addEventListener('click', debounce(submit, 'hello'));
+           
+            // function debounce(fn, value) {
+            //     var timer = null;
+            //     return function() {
+            //         if(timer) {
+            //             clearTimeout(timer);
+            //         }
+            //         timer = setTimeout(function(){
+            //             fn.call(this, value);
+            //         }, 1000);
+            //     }
+            // }
+
+            // 节流函数 一段时间持续触发函数时，保证一定时间内只触发一次处理函数的调用。
+            // var btn = document.getElementById('btn');
+            // var submit = function (value) {
+            //     console.log(value);
+            // }
+            // function throttle(fn, value) {
+            //     var flag = true;
+            //     return function() {
+            //         if(!flag) {
+            //             return ;
+            //         }
+            //         flag = false; 
+            //         setTimeout(function(){
+            //             fn.call(this, value);
+            //             flag = true;
+            //         }, 1000);
+            //     }
+            // }
+            // btn.addEventListener('click',throttle(submit, "hellos"));
+
+            // 深克隆
+            // 简单粗暴版
+            // var newVal = JSON.parse(JSON.stringify(oldVal));
+            // pending
+            
+            // 发布订阅模式
+            // class EventMmeitter {
+            //     constructor() {
+            //         this._events = this._events || new Map();
+            //         this._maxListeners = this._maxListeners || 20;
+            //     }
+            // }
+            // EventMmeitter.prototype.emit = function(type, ...args) {
+            //     let handler;
+            //     handler = this._events.get(type);
+            //     if (args.length > 0) {
+            //         handler.apply(this, args);
+            //     } else {
+            //         handler.call(this);
+            //     }
+            //     return true;
+            // }
+            // // 
+            // EventMmeitter.prototype.addListener = function (type, fn) {
+            //     if(this._events.get(type)) {
+            //         return ;
+            //     } else {
+            //         this._events.set(type, fn);
+            //     }
+            // }    
+
+        //     // 对象的深度克隆
+        //     var flag = 1;
+        //     function deepClone(obj) {
+        //         flag++;
+        //         // 防止实例对象自定义toString()方法，所以用call的方式来获取type属性
+        //         var type = Object.prototype.toString.call(obj);
+        //         // 判断object是否为基本数据类型(number\string\undefined\boolean\)或者null
+        //         // typeof 判断null对象为object
+        //         if (typeof obj !== 'object' || obj === null) {
+        //             return obj;
+        //         }
+
+        //         if (type === "[object Date]") {
+        //             // obj.valueof()用来返回当前对象对应的值
+        //             return new Data(obj.valueof());
+        //         }
+
+        //         if (type === "[object Boolean]") {
+        //             return new Boolean(obj.valueof());
+        //         }
+
+        //         if (type === "[object Number]") {
+        //             return new Number(obj.valueof());
+        //         }
+
+        //         if (type === "[object String]") {
+        //             return new String(obj.valueof());
+        //         }
+
+        //         if (type === "[object RegExp]") {
+        //             return new RegExp(obj.valueof());
+        //         }
+
+        //         if (type === "[object Object]" || type === "[object Array]") {
+        //             // 如果是对象，则创建obj
+        //             var newObj = (type === "[object Object]" ? Object.create(Object.getPrototypeOf(obj)) : []);
+        //             // 获取obj自身所有的属性（包括可遍历和不可遍历的）不包括继承的属性
+        //             var props = Object.getOwnPropertyNames(obj);
+        //             for(var item in props) {
+        //                 // 获取属性描述
+        //                 var des = Object.getOwnPropertyDescriptor(obj, props[item]);
+        //                  // 如果属性有value，则继续递归
+        //                 if(des.hasOwnProperty("value")) {
+        //                     des.value = arguments.callee(des.value);
+        //                 }
+        //                 // 将属性定义到newObj中
+        //                 Object.defineProperty(newObj, props[item], des);
+        //             }
+        //             return newObj;
+        //         }
+        //         return obj;
+        //  }
+        // console.log(typeof "1");
+
+        </script>
+    </body>
+</html>

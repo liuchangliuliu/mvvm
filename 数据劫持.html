@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta charset="format-detection" content="telephone=no">
+         
+    </head>
+    <body>
+        <div id="app">
+            <p>{{a.b}}</p>
+            <p>{{c}}</p>
+            <input type="text" v-model="c">
+            {{hello}}
+        </div>
+        <script src="./mvvm.js"></script>
+        <script>
+            let test  = new Test({
+                el: '#app',
+                data: {a: {b:'bbb'}, c: 'cccc'}, //Object.defineProperty(obj, 'a', 1);
+                computed: {
+                    hello() {
+                        let a =  this.a.b + this.c;
+                        debugger
+                        return a;
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
