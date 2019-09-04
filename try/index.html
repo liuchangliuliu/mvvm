@@ -7,15 +7,25 @@
     <title>Document</title>
 </head>
 <body>
-    
+   <div id="app">
+    <p>b的值为：{{a.b}}</p>
+    <p>c的值为：{{c}}</p>
+    <input type="text" v-model="a.b">
+    {{hello}}
+   </div>
 </body>
 <script src="./mvvm.js"></script>
 <script>
     let vue =  new Vue({
         el: '#app',
-        date: {
+        data: {
             a: {b: 1},
-            c: 2
+            c: 'sdsd'
+        },
+        computed: {
+            hello() {
+                return this.a.b + this.c;
+            }
         }
     })
 

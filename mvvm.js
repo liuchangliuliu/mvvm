@@ -23,6 +23,37 @@ function Test(options = {}) {
     new Compile(options.el, this);
 
 }
+
+function observer(data) {
+    for (let key in data) {
+        let val = data[key];
+        // 如果val不是基本数据类型，则需要继续劫持
+        if (val != null && typeof val === "object") {
+            observer(val);
+        }
+        let dep = new Dep();
+        Object.defineProperty(data, key, {
+            enumerable: true,
+            get() {
+                Dep.target && dep.addSub(Dep.target);
+                return val;
+            },
+            set(newval) {
+                // 如果数据发生变化
+                if (newval === val) {
+                    return;
+                }
+                val = newval;
+                // 新值如果不是基本数据类型，则需要继续
+                if (val != null && typeof val === "object") {
+                    observer(val);
+                }
+                dep.notify(); 
+            }
+        })
+    }
+}
+
 function initComputed() {
     let vm = this;
     let computed = this.$options.computed;
@@ -70,9 +101,11 @@ function initComputed() {
 //     return new Observe(data)
 // }
 
+
 // 编译模板
 function Compile(el, vm) {
     vm.$el = document.querySelector(el);
+    // 创建文档片段，将dom节点移动到内存中
     let fragment = document.createDocumentFragment();
     // 将#app中的内容移入内存中
     while (child = vm.$el.firstChild) {
@@ -144,7 +177,7 @@ Dep.prototype.notify = function () {
     })
 }
 
-//订阅
+//观察者
 function Watcher(vm, exp, fn) {
     this.vm = vm;
     this.exp = exp;
@@ -171,34 +204,6 @@ Watcher.prototype.update = function () {
 
 
 
-function observer(data) {
-    for (let key in data) {
-        let val = data[key];
-        // 如果val不是基本数据类型，则需要继续劫持
-        if (val != null && typeof val === "object") {
-            observer(val);
-        }
-        let dep = new Dep();
-        Object.defineProperty(data, key, {
-            enumerable: true,
-            get() {
-                Dep.target && dep.addSub(Dep.target);
-                return val;
-            },
-            set(newval) {
-                // 如果数据发生变化
-                if (newval === val) {
-                    return;
-                }
-                val = newval;
-                // 新值如果不是基本数据类型，则需要继续
-                if (val != null && typeof val === "object") {
-                    observer(val);
-                }
-                dep.notify(); 
-            }
-        })
-    }
-}
+
 //vue不能新增不存在的属性，因为新增的属性没有set和get
 // 深度响应 因为每次赋值都会给新对象增加数据劫持
